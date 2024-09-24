@@ -2,38 +2,24 @@ class Solution {
 public:
     vector<int> DP;
     int minExtraChar(string s, vector<string>& dictionary) {
-        /*vector<string> tmp=dictionary;
-        for(int i=0;<s.size(),i++)
-        {
-            for(int j=0;j<dictionary.size();j++)
-            {
-                if(s[i]==dictionary[j][0])
-                    vector
-            }
-
-        }
-        int fmin(int a)
-        {
-            if(a==s.size()-1)
-                return 
-            return fmin()
-        }*/
+      
         int n = s.size();
         unordered_set<string> dict(dictionary.begin(), dictionary.end());
+        //±qvector´«¨ìset
 
-        // dp[i] è¡¨ç¤ºåˆ°ä½ç½® i çš„æ™‚å€™æœ€å°‘çš„å¤šé¤˜å­—æ¯æ•¸
+        // dp[i] ªí¥Ü¨ì¦ì¸m i ªº®É­Ô³Ì¤Öªº¦h¾l¦r¥À¼Æ
         vector<int> dp(n + 1, n);
         dp[0] = 0;
 
-        // éæ­·å­—ç¬¦ä¸²çš„æ¯å€‹ä½ç½®
+        // ¹M¾ú¦r²Å¦êªº¨C­Ó¦ì¸m
         for (int i = 1; i <= n; ++i) {
-        // å˜—è©¦æ‰€æœ‰å¯èƒ½çš„å­å­—ç¬¦ä¸² s[j:i]
+        // ¹Á¸Õ©Ò¦³¥i¯àªº¤l¦r²Å¦ê s[j:i]
         for (int j = 0; j < i; ++j) {
-            if (dict.count(s.substr(j, i - j))) { //countçœ‹æ‹¬è™Ÿå…§çš„æ±è¥¿æœ‰æ²’æœ‰åœ¨dictè£¡ï¼Œæœ‰1æ²’0 //substrå¾jä½é–‹å§‹æˆªå–i-jå€‹å­—
-                dp[i] = min(dp[i], dp[j]);
+            if (dict.count(s.substr(j, i - j))) { //count¬İ¬A¸¹¤ºªºªF¦è¦³¨S¦³¦bdict¸Ì¡A¦³1¨S0 //substr±qj¦ì¶}©lºI¨úi-j­Ó¦r
+                dp[i] = min(dp[i], dp[j]); //¦pªGi-j³o¬q¦b¦r¨å¸Ì¡A¨º¦³¨S¦³³o¬q³Ñ¾l¦r¥Às³£¬O¤@¼Ëªº
             }
         }
-        dp[i] = min(dp[i], dp[i-1] + 1);  // å¦‚æœä¸èƒ½åŒ¹é…ï¼Œè‡³å°‘è¦å¤šç•™ä¸€å€‹å­—æ¯
+        dp[i] = min(dp[i], dp[i-1] + 1);  // ¦pªG¤£¯à¦b¦r¨å¸Ì¡A¦Ü¤Ö­n¦h¯d¤@­Ó¦r¥À
         }
 
         return dp[n];
