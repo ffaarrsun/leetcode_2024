@@ -12,7 +12,7 @@ public:
         vector<int> kmp;
         string rev=string(s.rbegin(),s.rend());
         string newS=s+"#"+rev;
-         
+         /*  */
     }
 };
 // @lc code=end
