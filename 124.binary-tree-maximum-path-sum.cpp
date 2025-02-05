@@ -26,11 +26,29 @@
 #include <queue>
 
 using namespace std;
-class Solution {
+class Solution
+{
 public:
-    int maxPathSum(TreeNode* root) {
-        
+  /*  struct TreeNode
+    {
+        int val;
+        TreeNode *left;
+        TreeNode *right;
+    };*/
+    int count(TreeNode *root, int &ans)
+    {
+        if (!root)
+            return 0;
+        int left = max(count(root->left, ans), 0);
+        int right = max(count(root->right, ans), 0);
+        ans = max(ans, left + right + root->val);
+        return max(left, right) + root->val;
+    }
+    int maxPathSum(TreeNode *root)
+    {
+        int ans = INT_MIN;
+        count(root, ans);
+        return ans;
     }
 };
 // @lc code=end
-
